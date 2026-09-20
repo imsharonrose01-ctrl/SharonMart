@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .admin-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .admin-box {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .admin-box h1 {
+            color: #333333;
+        }
+
+        .admin-box h2 {
+            color: #444444;
+            margin-bottom: 15px;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .admin-table th,
+        .admin-table td {
+            border: 1px solid #e5e5e5;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .admin-table th {
+            background: #f7f7f7;
+            color: #444444;
+        }
+
+        .admin-table td {
+            background: #ffffff;
+        }
+
+        .admin-box button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 6px;
+            background: #f1f1f1;
+            color: #333333;
+            cursor: pointer;
+        }
+
+        .admin-box button:hover {
+            background: #e5e5e5;
+        }
+
+        .empty {
+            color: #777777;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="admin-container">
+
+        <div class="admin-box">
+
+            <h1>SharonMart</h1>
+
+            <h2>Admin Dashboard</h2>
+
+            <p>Manage users, products and orders.</p>
+
+        </div>
+
+
+        <div class="admin-box">
+
+            <h2>Registered Users</h2>
+
+            <div id="usersTable"></div>
+
+        </div>
+
+
+        <div class="admin-box">
+
+            <h2>Seller Products</h2>
+
+            <div id="productsTable"></div>
+
+        </div>
+
+
+        <div class="admin-box">
+
+            <h2>Orders</h2>
+
+            <div id="ordersTable"></div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function displayUsers() {
+
+            let users =
+                JSON.parse(localStorage.getItem("users")) || [];
+
+            let table =
+                document.getElementById("usersTable");
+
+
+            if (users.length === 0) {
+
+                table.innerHTML =
+                    "<p class='empty'>No registered users found.</p>";
+
+                return;
+
+            }
+
+
+            let html = `
+
+                <table class="admin-table">
+
+                    <tr>
+
+                        <th>Name</th>
+
+                        <th>Email</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+            `;
+
+
+            users.forEach(function(user, index) {
+
+                html += `
+
+                    <tr>
+
+                        <td>${user.name}</td>
+
+                        <td>${user.email}</td>
+
+                        <td>
+
+                            <button
+                                onclick="deleteUser(${index})"
+                            >
+                                Remove
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                `;
+
+            });
+
+
+            html += "</table>";
+
+            table.innerHTML = html;
+
+        }
+
+
+        function deleteUser(index) {
+
+            let users =
+                JSON.parse(localStorage.getItem("users")) || [];
+
+
+            let confirmDelete =
+                confirm("Are you sure you want to remove this user?");
+
+
+            if (!confirmDelete) {
+
+                return;
+
+            }
+
+
+            users.splice(index, 1);
+
+            localStorage.setItem(
+                "users",
+                JSON.stringify(users)
+            );
+
+            displayUsers();
+
+        }
+
+
+        function displayProducts() {
+
+            let products =
+                JSON.parse(localStorage.getItem("sellerProducts")) || [];
+
+            let table =
+                document.getElementById("productsTable");
+
+
+            if (products.length === 0) {
+
+                table.innerHTML =
+                    "<p class='empty'>No seller products found.</p>";
+
+                return;
+
+            }
+
+
+            let html = `
+
+                <table class="admin-table">
+
+                    <tr>
+
+                        <th>Product Name</th>
+
+                        <th>Price</th>
+
+                        <th>Quantity</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+            `;
+
+
+            products.forEach(function(product, index) {
+
+                html += `
+
+                    <tr>
+
+                        <td>${product.name}</td>
+
+                        <td>₹${product.price}</td>
+
+                        <td>${product.quantity}</td>
+
+                        <td>
+
+                            <button
+                                onclick="deleteProduct(${index})"
+                            >
+                                Remove
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                `;
+
+            });
+
+
+            html += "</table>";
+
+            table.innerHTML = html;
+
+        }
+
+
+        function deleteProduct(index) {
+
+            let products =
+                JSON.parse(localStorage.getItem("sellerProducts")) || [];
+
+
+            let confirmDelete =
+                confirm("Are you sure you want to remove this product?");
+
+
+            if (!confirmDelete) {
+
+                return;
+
+            }
+
+
+            products.splice(index, 1);
+
+            localStorage.setItem(
+                "sellerProducts",
+                JSON.stringify(products)
+            );
+
+            displayProducts();
+
+        }
+
+
+        function displayOrders() {
+
+            let orders =
+                JSON.parse(localStorage.getItem("orders")) || [];
+
+            let table =
+                document.getElementById("ordersTable");
+
+
+            if (orders.length === 0) {
+
+                table.innerHTML =
+                    "<p class='empty'>No orders found.</p>";
+
+                return;
+
+            }
+
+
+            let html = `
+
+                <table class="admin-table">
+
+                    <tr>
+
+                        <th>Order ID</th>
+
+                        <th>Date</th>
+
+                        <th>Status</th>
+
+                        <th>Products</th>
+
+                    </tr>
+
+            `;
+
+
+            orders.forEach(function(order) {
+
+                let productNames = "";
+
+                order.products.forEach(function(product) {
+
+                    productNames +=
+                        product.name + " x " +
+                        product.quantity + "<br>";
+
+                });
+
+
+                html += `
+
+                    <tr>
+
+                        <td>${order.orderId}</td>
+
+                        <td>${order.date}</td>
+
+                        <td>${order.status}</td>
+
+                        <td>${productNames}</td>
+
+                    </tr>
+
+                `;
+
+            });
+
+
+            html += "</table>";
+
+            table.innerHTML = html;
+
+        }
+
+
+        displayUsers();
+
+        displayProducts();
+
+        displayOrders();
+
+    </script>
+
+</body>
+
+</html>

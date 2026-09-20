@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SharonMart - Order History</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .orders-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .orders-box {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .orders-box h1 {
+            color: #333333;
+        }
+
+        .order {
+            border: 1px solid #e5e5e5;
+            padding: 18px;
+            margin-top: 15px;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+
+        .order h3 {
+            color: #444444;
+        }
+
+        .order p {
+            color: #555555;
+        }
+
+        .order button {
+            padding: 9px 15px;
+            border: none;
+            border-radius: 6px;
+            background: #f1f1f1;
+            cursor: pointer;
+        }
+
+        .order button:hover {
+            background: #e5e5e5;
+        }
+
+        .empty {
+            color: #777777;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="orders-container">
+
+        <div class="orders-box">
+
+            <h1>SharonMart</h1>
+
+            <h2>Order History</h2>
+
+            <div id="ordersList"></div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function displayOrders() {
+
+            let orders =
+                JSON.parse(
+                    localStorage.getItem("orders")
+                ) || [];
+
+
+            let ordersList =
+                document.getElementById(
+                    "ordersList"
+                );
+
+
+            if (orders.length === 0) {
+
+                ordersList.innerHTML =
+                    "<p class='empty'>No orders found.</p>";
+
+                return;
+
+            }
+
+
+            let html = "";
+
+
+            orders.forEach(function(order) {
+
+                html += `
+
+                    <div class="order">
+
+                        <h3>
+                            Order #${order.orderId}
+                        </h3>
+
+                        <p>
+                            Date: ${order.date}
+                        </p>
+
+                        <p>
+                            Status: ${order.status}
+                        </p>
+
+                        <h4>
+                            Products
+                        </h4>
+
+                `;
+
+
+                order.products.forEach(function(product) {
+
+                    html += `
+
+                        <p>
+                            ${product.name}
+                            × ${product.quantity}
+                            — ₹${product.price}
+                        </p>
+
+                    `;
+
+                });
+
+
+                html += `
+
+                    </div>
+
+                `;
+
+            });
+
+
+            ordersList.innerHTML = html;
+
+        }
+
+
+        displayOrders();
+
+    </script>
+
+</body>
+
+</html>
