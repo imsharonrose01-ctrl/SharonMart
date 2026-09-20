@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SharonMart - Buyer Login</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #eef3ed, #f3edf5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #30352f;
+        }
+
+        .login-container {
+            width: 900px;
+            max-width: 92%;
+            min-height: 560px;
+            display: flex;
+            background: white;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 18px 50px rgba(60, 60, 60, 0.12);
+        }
+
+        /* LEFT SIDE */
+
+        .welcome-section {
+            width: 42%;
+            background: #e5ebe2;
+            padding: 55px 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .brand {
+            font-family: Georgia, serif;
+            font-size: 38px;
+            font-weight: bold;
+            color: #405447;
+            letter-spacing: -1px;
+        }
+
+        .brand span {
+            color: #947b91;
+        }
+
+        .tagline {
+            margin-top: 10px;
+            font-size: 12px;
+            letter-spacing: 4px;
+            color: #718074;
+        }
+
+        .line {
+            width: 45px;
+            height: 3px;
+            background: #a98fa6;
+            border-radius: 5px;
+            margin: 35px 0 25px;
+        }
+
+        .quote {
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-size: 25px;
+            line-height: 1.5;
+            color: #526356;
+        }
+
+        .small-text {
+            margin-top: 25px;
+            max-width: 260px;
+            font-size: 14px;
+            line-height: 1.7;
+            color: #737b73;
+        }
+
+        /* RIGHT SIDE */
+
+        .login-section {
+            width: 58%;
+            padding: 65px 65px;
+            background: #fffdfd;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .welcome-title {
+            text-align: center;
+            font-size: 12px;
+            letter-spacing: 4px;
+            color: #78907d;
+            margin-bottom: 12px;
+        }
+
+        .login-section h2 {
+            text-align: center;
+            font-family: Georgia, serif;
+            font-size: 32px;
+            margin: 0;
+            color: #303b33;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #858985;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 12px 0 35px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #4d554e;
+        }
+
+        input {
+            width: 100%;
+            height: 48px;
+            padding: 0 15px;
+            border: 1px solid #d7dcd7;
+            border-radius: 9px;
+            background: #fafbfa;
+            font-size: 14px;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        input:focus {
+            border-color: #91a594;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(145, 165, 148, 0.15);
+        }
+
+        .login-btn {
+            width: 100%;
+            height: 49px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 9px;
+            background: #718775;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .login-btn:hover {
+            background: #5f7563;
+        }
+
+        #message {
+            text-align: center;
+            color: #b05d68;
+            font-size: 13px;
+            min-height: 18px;
+            margin-top: 12px;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 22px;
+            color: #858985;
+            font-size: 13px;
+        }
+
+        .register-link a {
+            color: #80627a;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+
+        .bottom-line {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 30px;
+            color: #8b9a8d;
+            font-size: 10px;
+            letter-spacing: 3px;
+        }
+
+        .bottom-line::before,
+        .bottom-line::after {
+            content: "";
+            height: 1px;
+            background: #cbd3cc;
+            flex: 1;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .login-container {
+                flex-direction: column;
+                margin: 20px 0;
+            }
+
+            .welcome-section {
+                width: 100%;
+                padding: 35px;
+            }
+
+            .brand {
+                font-size: 32px;
+            }
+
+            .quote {
+                font-size: 21px;
+            }
+
+            .login-section {
+                width: 100%;
+                padding: 40px 30px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <!-- LEFT SIDE -->
+
+        <div class="welcome-section">
+
+            <div class="brand">
+                Sharon<span>Mart</span>
+            </div>
+
+            <div class="tagline">
+                SHOP • SMILE • REPEAT
+            </div>
+
+            <div class="line"></div>
+
+            <div class="quote">
+                “Better things are<br>
+                just a click away.”
+            </div>
+
+            <div class="small-text">
+                A simple place to discover what you need
+                and enjoy a comfortable shopping experience.
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="login-section">
+
+            <div class="welcome-title">
+                WELCOME BACK
+            </div>
+
+            <h2>Buyer Login</h2>
+
+            <p class="subtitle">
+                Log in to your account and continue<br>
+                your shopping journey.
+            </p>
+
+
+            <form onsubmit="login(event)">
+
+                <div class="form-group">
+
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Password</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+
+                <button type="submit" class="login-btn">
+                    LOGIN →
+                </button>
+
+                <p id="message"></p>
+
+            </form>
+
+
+            <p class="register-link">
+                New to SharonMart?
+                <a href="register.html">Create an account</a>
+            </p>
+
+
+            <div class="bottom-line">
+                SHOP • SMILE • REPEAT
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function login(event) {
+
+            event.preventDefault();
+
+            let email =
+                document.getElementById("email").value;
+
+            let password =
+                document.getElementById("password").value;
+
+            let savedEmail =
+                localStorage.getItem("email");
+
+            let savedPassword =
+                localStorage.getItem("password");
+
+
+            if (email === savedEmail && password === savedPassword) {
+
+                window.location.href = "products.html";
+
+            } else {
+
+                document.getElementById("message").innerText =
+                    "Invalid email or password!";
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

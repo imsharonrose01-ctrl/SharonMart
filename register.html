@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SharonMart - Register</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #eef3ed, #f4eff6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #30352f;
+        }
+
+        .register-container {
+            width: 900px;
+            max-width: 92%;
+            min-height: 570px;
+            display: flex;
+            background: rgba(255, 255, 255, 0.88);
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 18px 50px rgba(70, 70, 70, 0.12);
+        }
+
+        /* LEFT SIDE */
+
+        .welcome-section {
+            width: 42%;
+            background: #e5ebe2;
+            padding: 55px 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .brand {
+            font-size: 30px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            color: #3d5143;
+            margin-bottom: 45px;
+        }
+
+        .brand span {
+            color: #9a7b91;
+        }
+
+        .quote {
+            font-family: Georgia, serif;
+            font-size: 25px;
+            line-height: 1.45;
+            color: #465347;
+            margin-bottom: 18px;
+        }
+
+        .small-text {
+            font-size: 14px;
+            line-height: 1.7;
+            color: #737b73;
+            max-width: 260px;
+        }
+
+        .line {
+            width: 45px;
+            height: 3px;
+            background: #b79caf;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        /* RIGHT SIDE */
+
+        .form-section {
+            width: 58%;
+            padding: 48px 60px;
+            background: #fffdfd;
+        }
+
+        .form-section h1 {
+            margin: 0;
+            font-size: 28px;
+            color: #30352f;
+        }
+
+        .subtitle {
+            margin: 8px 0 30px;
+            color: #858985;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #4d554e;
+        }
+
+        input {
+            width: 100%;
+            height: 46px;
+            padding: 0 14px;
+            border: 1px solid #d9ddd8;
+            border-radius: 9px;
+            background: #fafbfa;
+            font-size: 14px;
+            color: #333;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        input:focus {
+            border-color: #9caf9d;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(156, 175, 157, 0.15);
+        }
+
+        .password-info {
+            margin-top: -5px;
+            margin-bottom: 18px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            background: #f2eef4;
+            color: #77717a;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .create-btn {
+            width: 100%;
+            height: 48px;
+            border: none;
+            border-radius: 9px;
+            background: #718775;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 5px;
+        }
+
+        .create-btn:hover {
+            background: #5f7563;
+        }
+
+        #message {
+            text-align: center;
+            color: #b05d68;
+            font-size: 13px;
+            min-height: 18px;
+            margin: 10px 0 0;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 22px;
+            font-size: 13px;
+            color: #858985;
+        }
+
+        .login-link a {
+            color: #80627a;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 700px) {
+
+            .register-container {
+                flex-direction: column;
+                margin: 20px 0;
+            }
+
+            .welcome-section {
+                width: 100%;
+                padding: 30px;
+            }
+
+            .brand {
+                margin-bottom: 20px;
+            }
+
+            .quote {
+                font-size: 21px;
+            }
+
+            .form-section {
+                width: 100%;
+                padding: 35px 30px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="register-container">
+
+        <!-- LEFT SIDE -->
+
+        <div class="welcome-section">
+
+            <div class="brand">
+                Sharon<span>Mart</span>
+            </div>
+
+            <div class="quote">
+                "Good things begin<br>
+                with simple choices."
+            </div>
+
+            <div class="line"></div>
+
+            <div class="small-text">
+                Create your account and enjoy a simple,
+                comfortable shopping experience.
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="form-section">
+
+            <h1>Create your account</h1>
+
+            <p class="subtitle">
+                Join SharonMart to get started.
+            </p>
+
+
+            <form onsubmit="register(event)">
+
+                <div class="form-group">
+
+                    <label>Full Name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Email Address</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email address"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Password</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Create a strong password"
+                        required
+                    >
+
+                </div>
+
+
+                <p class="password-info">
+                    Use at least 8 characters with one uppercase letter,
+                    one lowercase letter, one number and one special character.
+                </p>
+
+
+                <div class="form-group">
+
+                    <label>Confirm Password</label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Re-enter your password"
+                        required
+                    >
+
+                </div>
+
+
+                <button type="submit" class="create-btn">
+                    CREATE ACCOUNT
+                </button>
+
+
+                <p id="message"></p>
+
+            </form>
+
+
+            <p class="login-link">
+                Already have an account?
+                <a href="index.html">Login here</a>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function register(event) {
+
+            event.preventDefault();
+
+            let name =
+                document.getElementById("name").value;
+
+            let email =
+                document.getElementById("email").value;
+
+            let password =
+                document.getElementById("password").value;
+
+            let confirmPassword =
+                document.getElementById("confirmPassword").value;
+
+
+            let strongPassword =
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+
+
+            if (!strongPassword.test(password)) {
+
+                document.getElementById("message").innerText =
+                    "Password is not strong enough.";
+
+                return;
+            }
+
+
+            if (password !== confirmPassword) {
+
+                document.getElementById("message").innerText =
+                    "Passwords do not match.";
+
+                return;
+            }
+
+
+            localStorage.setItem("name", name);
+            localStorage.setItem("email", email);
+            localStorage.setItem("password", password);
+
+
+            alert("Account created successfully!");
+
+            window.location.href = "index.html";
+        }
+
+    </script>
+
+</body>
+
+</html>
